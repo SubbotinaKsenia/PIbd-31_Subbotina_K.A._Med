@@ -15,9 +15,9 @@ const forceSSL = function() {
 
 app.use(forceSSL());
 
-app.use(express.static('PIbd-31_Subbotina_K.A._Med/dist'));
+app.use(express.static(__dirname + '/dist'));
 app.listen(process.env.PORT || 8080);
 
 app.get('/*', function(req, res) {
-	res.sendFile(path.join('PIbd-31_Subbotina_K.A._Med/dist/Med/index.html'));
+	res.sendFile(path.join(__dirname + '/dist/Med/index.html'));
 });
