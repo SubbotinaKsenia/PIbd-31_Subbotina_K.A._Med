@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './Components/Header/app.component';
+import { AppComponent } from './Components/header/app.component';
 import { RecordComponent } from './Components/record/record.component';
 import { HomeComponent } from './Components/home/home.component';
 
