@@ -5,9 +5,9 @@ import { RecordComponent } from './record/record.component';
 import { HomeComponent } from './home/home.component';
 
 const appRoutes: Routes = [
-  { path: 'record', component: RecordComponent },
   { path: 'home', component: HomeComponent },
   { path: '',   redirectTo: '/home', pathMatch: 'full' },
+  { path: 'record', loadChildren: './record/record.module#RecordModule' },
 ];
 
 @NgModule({
