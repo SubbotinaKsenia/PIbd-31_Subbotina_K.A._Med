@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AppComponent } from './Components/header/app.component';
-import { RecordComponent } from './Components/record/record.component';
-import { HomeComponent } from './Components/home/home.component';
+import { AppComponent } from './header/app.component';
+import { RecordComponent } from './record/record.component';
+import { HomeComponent } from './home/home.component';
 
 const appRoutes: Routes = [
   { path: 'record', component: RecordComponent },
