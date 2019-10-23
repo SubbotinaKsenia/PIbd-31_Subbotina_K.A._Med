@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Doctor } from '../doctor'
 import { DoctorsService } from '../doctors.service';
-import { ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 @Component({
@@ -13,7 +13,7 @@ export class AddComponent implements OnInit {
 
   public Editor = ClassicEditor;
 
-  constructor(private doctorsService: DoctorsService, private route: ActivatedRoute) { }
+  constructor(private doctorsService: DoctorsService, private route: ActivatedRoute, private router: Router) { }
   doctor: Doctor = { id: null, fio: null, description: null, price: null, images: [] };
 
   createOrupdate() {
@@ -23,6 +23,7 @@ export class AddComponent implements OnInit {
     else {
       this.addDoctor(this.doctor);
     }
+    this.router.navigateByUrl('/admin');
   }
 
   updateDoctor(doctor: Doctor) {
@@ -60,5 +61,5 @@ export class AddComponent implements OnInit {
         this.doctor.images = result.list.images;
       }
     });
-  }
+  }  
 }

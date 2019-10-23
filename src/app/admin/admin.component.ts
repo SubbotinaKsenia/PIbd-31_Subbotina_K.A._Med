@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Doctor } from './doctor'
 import { DoctorsService } from './doctors.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin',
@@ -9,7 +10,7 @@ import { DoctorsService } from './doctors.service';
 })
 export class AdminComponent implements OnInit {
 
-  constructor(private doctorsService: DoctorsService) { }
+  constructor(private doctorsService: DoctorsService, private router: Router) { }
   doctors: Doctor[];
 
   deleteDoctor(id: number) {
@@ -18,6 +19,7 @@ export class AdminComponent implements OnInit {
         console.log("Doctor deleted successfully: ", id)
       }
     });
+    location.reload();
   }
 
   getDoctor(id: number) {
@@ -32,5 +34,9 @@ export class AdminComponent implements OnInit {
       this.doctors = doctors.list;
       console.log(this.doctors);
     })
+  }
+
+  ngOnChanges(){
+    this.ngOnInit();
   }
 }
