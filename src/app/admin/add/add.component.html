@@ -1,0 +1,25 @@
+<div id="form">
+    <label>FIO</label>
+  <br>
+  <input #fioV type="text" name="fio" placeholder="fio" [(ngModel)]="doctor.fio">
+  <br>
+  <label>Price</label>
+  <br>
+  <input #priceV type="text" name="price" placeholder="price" [(ngModel)]="doctor.price">
+  <br>
+  <label>Description</label>
+  <br>
+  <ckeditor [editor]="Editor" [(ngModel)]="doctor.description"></ckeditor>
+  <!-- <input #descriptionV type="text" name="description" placeholder="description" [(ngModel)]="doctor.description">"> -->
+  <br>
+  <label>Image</label>
+  <br>
+  <div *ngFor="let image of doctor.images; let i=index">
+    <input #imageV type="text" name="images" placeholder="image" [(ngModel)]=image.original>
+    <input type="button" (click)="delImage(i)" value="-">
+  </div>
+  <input type="button" (click)="addImage()" value="+">
+  <br><br>
+  <a routerLink="/admin"><button type="button" (click)="save()">Назад</button></a>
+  <input type="button" (click)="createOrupdate()" value="Сохранить">
+</div>

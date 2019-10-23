@@ -1,0 +1,27 @@
+<table id="d" border='1' width='50%'>
+  <tr>
+    <th></th>
+    <th id="dd" border='1'>ID</th>
+    <th id="dd" border='1'>FIO</th>
+    <th id="dd" border='1'>Price</th>
+    <th id="dd" border='1'>Description</th>
+    <th id="dd" border='1'>Images</th>
+
+  </tr>
+
+  <tr *ngFor="let doctor of doctors">
+    <td><button type="button" (click)="deleteDoctor(doctor.id)">Delete</button>
+      <button [routerLink]="['/admin/edit/', doctor.id]">Update</button></td>
+    <td id="dd">{{ doctor.id }}</td>
+    <td id="dd">{{ doctor.fio }}</td>
+    <td id="dd">{{ doctor.price }}</td>
+    <td id="dd" [innerHTML]="doctor.description"></td>
+    <td id="dd">
+      <div *ngFor="let image of doctor.images">
+        {{image.original}}
+      </div>
+    </td>
+  </tr>
+</table>
+<br>
+<a routerLink="/admin/add"><button>Add</button></a>
