@@ -8,9 +8,13 @@
       <li><a routerLink="/record">Запись на приём</a></li>
       <li><a routerLink="/doctors">Врачи</a></li>
       <li><a href="#">О нас</a></li>
-      <li><a href="#">Контакты</a>
-      </li>
+      <li><a href="#">Контакты</a></li>
+      <li><a routerLink="/login">Авторизация</a></li>
+      <li><a routerLink="/register">Регистрация</a></li>
+      <li><a (click)="logout()">Выйти</a></li>
+      <li><label>{{ user_name }}</label></li>    
     </ul>
+    
   </nav>
       <router-outlet></router-outlet>
 </div>

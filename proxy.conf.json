@@ -1,6 +1,6 @@
 {
     "/api/*":{
-        "target": "https://ipmedbackend.herokuapp.com/api/",
+        "target": "http://localhost/PIbd-31_Subbotina_K.A._Backend/public/api",
         "secure": false,
         "logLevel": "debug",
         "changeOrigin": true,

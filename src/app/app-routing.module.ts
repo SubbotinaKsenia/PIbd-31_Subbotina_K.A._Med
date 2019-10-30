@@ -6,6 +6,8 @@ import { HomeComponent } from './home/home.component';
 import { AdminComponent } from './admin/admin.component';
 import { AddComponent } from './admin/add/add.component';
 import { DoctorsComponent } from './doctors/doctors.component'
+import { LoginComponent } from './login/login.component';
+import { RegistrationComponent } from './registration/registration.component';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -13,6 +15,8 @@ const appRoutes: Routes = [
   { path: 'admin/add', component: AddComponent },
   { path: 'admin/edit/:id', component: AddComponent , data:{mode:"edit"}},
   { path: 'doctors', component: DoctorsComponent },  
+  { path: 'login', component: LoginComponent }, 
+  { path: 'register', component: RegistrationComponent }, 
   { path: 'record', loadChildren: './record/record.module#RecordModule' },
   { path: '',   redirectTo: '/home', pathMatch: 'full' },
   { path: '**',   redirectTo: '/home', pathMatch: 'full' },
