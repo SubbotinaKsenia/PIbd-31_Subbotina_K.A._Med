@@ -25,4 +25,11 @@ export class LoginComponent {
     });
     this.router.navigateByUrl('/doctors');   
   }
+
+  loginFB(){
+    this.userService.loginFB().subscribe(result => {
+      console.log(result);            
+    });
+    //this.router.navigateByUrl('/doctors');   
+  }
 }

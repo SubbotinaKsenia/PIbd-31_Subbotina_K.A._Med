@@ -21,6 +21,7 @@ import { UserService } from './user.service';
 
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { CookieService } from 'ngx-cookie-service'
+import { isAuthorized } from './isAuthorized';
 
 
 @NgModule({
@@ -41,7 +42,7 @@ import { CookieService } from 'ngx-cookie-service'
     HttpClientModule,
     CKEditorModule
   ],
-  providers: [MessageService, HttpErrorHandler, DoctorsService, UserService, CookieService],
+  providers: [MessageService, HttpErrorHandler, DoctorsService, UserService, CookieService, isAuthorized],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -21,6 +21,14 @@ export class UserService {
         headers: new HttpHeaders().set('Authorization', 'Bearer ' + this.cookieService.get('token'))
       };
 
+    fb = {
+        headers: new HttpHeaders({
+            'Access-Control-Allow-Origin': 'https://www.facebook.com/',
+            'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
+            'Access-Control-Allow-Headers': 'origin, x-requested-with, content-type',
+        })
+    };
+
     register(user: User): Observable<any> {
         return this.http
             .post('api/register', user)
@@ -37,5 +45,11 @@ export class UserService {
         return this.http
             .post('api/logout', this.options)
             .pipe(catchError(this.handleError('logout')))
+    }
+
+    loginFB(): Observable<any> {
+        return this.http
+            .get('api/login/facebook', this.fb)
+            .pipe(catchError(this.handleError('loginFB')))
     }
 }

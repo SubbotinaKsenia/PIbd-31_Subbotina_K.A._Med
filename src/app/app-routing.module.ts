@@ -8,12 +8,14 @@ import { AddComponent } from './admin/add/add.component';
 import { DoctorsComponent } from './doctors/doctors.component'
 import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
+import { isAuthorized } from './isAuthorized';
+
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
-  { path: 'admin', component: AdminComponent },
-  { path: 'admin/add', component: AddComponent },
-  { path: 'admin/edit/:id', component: AddComponent , data:{mode:"edit"}},
+  { path: 'admin', component: AdminComponent, canActivate: [isAuthorized] },
+  { path: 'admin/add', component: AddComponent, canActivate: [isAuthorized] },
+  { path: 'admin/edit/:id', component: AddComponent , data:{mode:"edit"}, canActivate: [isAuthorized]},
   { path: 'doctors', component: DoctorsComponent },  
   { path: 'login', component: LoginComponent }, 
   { path: 'register', component: RegistrationComponent }, 
