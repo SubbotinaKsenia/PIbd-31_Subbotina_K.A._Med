@@ -23,7 +23,7 @@ export class UserService {
 
     fb = {
         headers: new HttpHeaders({
-            'Access-Control-Allow-Origin': 'https://www.facebook.com/',
+            'Access-Control-Allow-Origin': '*',
             'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
             'Access-Control-Allow-Headers': 'origin, x-requested-with, content-type',
         })
@@ -51,5 +51,17 @@ export class UserService {
         return this.http
             .get('api/login/facebook', this.fb)
             .pipe(catchError(this.handleError('loginFB')))
+    }
+
+    callback(): Observable<any> {
+        return this.http
+            .get('api/login/facebook/callback', this.fb)
+            .pipe(catchError(this.handleError('callback')))
+    }
+
+    getAuth(): Observable<any> {
+        return this.http
+            .get('api/login/facebook/getAuth')
+            .pipe(catchError(this.handleError('getAuth')))
     }
 }

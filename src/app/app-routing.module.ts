@@ -19,7 +19,8 @@ const appRoutes: Routes = [
   { path: 'doctors', component: DoctorsComponent },  
   { path: 'login', component: LoginComponent }, 
   { path: 'register', component: RegistrationComponent }, 
-  { path: 'record', loadChildren: './record/record.module#RecordModule' },
+  { path: 'record', component: RecordComponent },
+  //{ path: 'record', loadChildren: './record/record.module#RecordModule' },
   { path: '',   redirectTo: '/home', pathMatch: 'full' },
   { path: '**',   redirectTo: '/home', pathMatch: 'full' },
 ];

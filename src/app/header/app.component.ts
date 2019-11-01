@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service'
 import { UserService } from '../user.service';
 import { Router } from '@angular/router';
-import { User } from '../user'
 
 @Component({
   selector: 'app-root',

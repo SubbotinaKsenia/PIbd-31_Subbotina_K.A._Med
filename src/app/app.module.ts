@@ -32,7 +32,8 @@ import { isAuthorized } from './isAuthorized';
     AddComponent,
     DoctorsComponent,
     LoginComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    RecordComponent
   ],
   imports: [
     BrowserModule,

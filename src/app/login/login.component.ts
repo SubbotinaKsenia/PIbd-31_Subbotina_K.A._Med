@@ -28,8 +28,7 @@ export class LoginComponent {
 
   loginFB(){
     this.userService.loginFB().subscribe(result => {
-      console.log(result);            
+      window.location.href = result;        
     });
-    //this.router.navigateByUrl('/doctors');   
   }
 }
