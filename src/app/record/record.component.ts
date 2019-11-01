@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service'
 import { UserService } from '../user.service';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
+import { authService } from '../authService';
 
 @Component({
   selector: 'app-record',
@@ -10,13 +11,13 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class RecordComponent implements OnInit {
 
-  constructor(private cookieService: CookieService, private userService: UserService, private router: Router) { }
+  constructor(private cookieService: CookieService, private userService: UserService, private router: Router, private authService: authService) { }
 
   ngOnInit() {
      this.userService.getAuth().subscribe(result =>{
        if (result.status = 200){
-       this.cookieService.set('token', result.list.token);
-       this.cookieService.set('user_name', result.list.user_name);
+        this.authService.sendToken(result.list.token);
+        this.authService.sendUserName(result.list.user_name);
        }
      });
   }

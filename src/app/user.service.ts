@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core'
-import { HttpClient, HttpParams } from '@angular/common/http'
+import { HttpClient } from '@angular/common/http'
 import { HttpHeaders } from '@angular/common/http'
 
 import { Observable } from 'rxjs'
@@ -21,14 +21,6 @@ export class UserService {
         headers: new HttpHeaders().set('Authorization', 'Bearer ' + this.cookieService.get('token'))
       };
 
-    fb = {
-        headers: new HttpHeaders({
-            'Access-Control-Allow-Origin': '*',
-            'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
-            'Access-Control-Allow-Headers': 'origin, x-requested-with, content-type',
-        })
-    };
-
     register(user: User): Observable<any> {
         return this.http
             .post('api/register', user)
@@ -49,14 +41,8 @@ export class UserService {
 
     loginFB(): Observable<any> {
         return this.http
-            .get('api/login/facebook', this.fb)
+            .get('api/login/facebook')
             .pipe(catchError(this.handleError('loginFB')))
-    }
-
-    callback(): Observable<any> {
-        return this.http
-            .get('api/login/facebook/callback', this.fb)
-            .pipe(catchError(this.handleError('callback')))
     }
 
     getAuth(): Observable<any> {
