@@ -18,6 +18,14 @@ export class DoctorsComponent implements OnInit {
   ngOnInit() {
     this.doctorsService.getDoctors().subscribe(doctors => {
       this.doctors = doctors.list;
+      for (let doctor of doctors.list) {
+        for (let image of doctor.images){        
+          this.doctorsService.getImage(image.original).subscribe(res => {
+            if (res.link){
+              image.original = res.link;
+            }
+          });       
+        }}  
       console.log(this.doctors);
     })
   }

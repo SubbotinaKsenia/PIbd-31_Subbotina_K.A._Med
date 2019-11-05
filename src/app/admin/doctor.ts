@@ -4,6 +4,7 @@ export interface Doctor {
     description: string
     price: number
     images: Images[]
+    images_files: File[]
 }
 
 export interface Images {

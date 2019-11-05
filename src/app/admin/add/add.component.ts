@@ -14,7 +14,7 @@ export class AddComponent implements OnInit {
   public Editor = ClassicEditor;
 
   constructor(private doctorsService: DoctorsService, private route: ActivatedRoute, private router: Router) { }
-  doctor: Doctor = { id: null, fio: null, description: null, price: null, images: [] };
+  doctor: Doctor = { id: null, fio: null, description: null, price: null, images: [], images_files: []};
 
   createOrupdate() {
     if (this.route.snapshot.data['mode'] == "edit") {
@@ -30,16 +30,24 @@ export class AddComponent implements OnInit {
     this.doctorsService.updateDoctor(doctor).subscribe(result => {
       if (result.status == '201') {
         console.log("Doctor updated successfully: ", result.doc.fio)
+        this.doctorsService.addImages(doctor, result.doc.id, 'edit').subscribe(result => {
+          console.log("Images added successfully: ", result.list)
+        });
       }
     });
+    
   }
 
-  addDoctor(doctor: Doctor) {
+  addDoctor(doctor: Doctor) {    
     this.doctorsService.addDoctor(doctor).subscribe(result => {
       if (result.status == '201') {
         console.log("Doctor added successfully: ", result.list)
+        this.doctorsService.addImages(doctor, result.list, 'add').subscribe(result => {
+          console.log("Images added successfully: ", result.list)
+        });
       }
     });
+    
   }
 
   addImage() {
@@ -61,5 +69,10 @@ export class AddComponent implements OnInit {
         this.doctor.images = result.list.images;
       }
     });
-  }  
+  }
+  
+  handleFileInput(files: FileList) {    
+      this.doctor.images_files.push(files.item(0));    
+    console.log("files ", this.doctor.images_files);
+  }
 }
