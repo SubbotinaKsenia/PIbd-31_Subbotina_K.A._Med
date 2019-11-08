@@ -23,7 +23,7 @@ export class DoctorsService {
 
     dropbox = {
         headers: new HttpHeaders({
-        'Authorization': 'Bearer OsCo0aVepGAAAAAAAAAAHbMMyiYwemY9RzjO97pkfH6wJhmOSaBzY84UTLTE4Fs0',
+        'Authorization': 'Bearer OsCo0aVepGAAAAAAAAAAJ-l_qxF-pbgq3LH2r01zqOTNraJyMj7GcdvjDE9rFQ-g',
         'Content-Type': 'application/json'
     })};
 
@@ -90,5 +90,15 @@ export class DoctorsService {
         return this.http
             .post('https://api.dropboxapi.com/2/files/get_temporary_link', <JSON>data, this.dropbox)
             .pipe(catchError(this.handleError('getImage', <JSON>data)));
+    }
+
+    getResult(text: string): Observable<any>{
+        const data: any = { 
+            "text": text
+        };
+
+        return this.http
+        .post('api/search', <JSON>data, this.options)
+        .pipe(catchError(this.handleError('getResult', text)));
     }
 }

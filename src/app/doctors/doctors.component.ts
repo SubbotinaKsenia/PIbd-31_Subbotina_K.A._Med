@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Doctor } from '../admin/doctor'
 import { DoctorsService } from '../admin/doctors.service';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { debounceTime } from 'rxjs/operators';
+import { Subject } from 'rxjs';
+
+
 
 @Component({
   selector: 'app-doctors',
@@ -12,8 +16,20 @@ export class DoctorsComponent implements OnInit {
 
   public Editor = ClassicEditor;
 
-  constructor(private doctorsService: DoctorsService) { }
+  constructor(private doctorsService: DoctorsService) { 
+    this.observable.pipe(debounceTime(1000))
+    .subscribe(val =>{
+      this.doctorsService.getResult(val).subscribe(result => {
+        console.log("res ", result.list);
+        this.doctors = result.list;
+      });
+    })
+  }
+  
   doctors: Doctor[];
+
+  observable = new Subject<string>()
+  text: string;  
 
   ngOnInit() {
     this.doctorsService.getDoctors().subscribe(doctors => {
@@ -28,5 +44,10 @@ export class DoctorsComponent implements OnInit {
         }}  
       console.log(this.doctors);
     })
+  }
+
+  change(value: string){
+    this.observable.next(value);
+    console.log("dsfs: " + value);
   }
 }

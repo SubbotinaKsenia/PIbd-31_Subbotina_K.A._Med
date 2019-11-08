@@ -1,10 +1,14 @@
-<div id="form" *ngFor="let doctor of doctors">
-  <div id="element">
-    <div *ngFor="let image of doctor.images">
-            <img [src]="image.original" width=20% height=20%>
+<div id="form">
+  <input type="text" id="text" placeholder="search" [(ngModel)]="text" (ngModelChange)="change($event)">
+  <div *ngFor="let doctor of doctors">
+    <br><br>
+    <div id="element">
+      <div *ngFor="let image of doctor.images">
+        <img [src]="image.original" width=20% height=20%>
+      </div>
+      <label><b>ФИО:&nbsp;</b></label> <label>{{doctor.fio}}</label><br>
+      <label><b>Описание:&nbsp;</b></label> <label [innerHTML]="doctor.description"></label><br>
+      <label><b>Цена приёма:&nbsp;</b></label> <label>{{doctor.price}}</label><br>
     </div>
-    <label><b>ФИО:&nbsp;</b></label> <label>{{doctor.fio}}</label><br>
-    <label><b>Описание:&nbsp;</b></label> <label [innerHTML]="doctor.description"></label><br>
-    <label><b>Цена приёма:&nbsp;</b></label> <label>{{doctor.price}}</label><br>
   </div>
 </div>
