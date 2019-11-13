@@ -32,33 +32,38 @@ export class DoctorsService {
     getDoctors(): Observable<any> {
         return this.http
             .get(this.link + 'api/doctors', this.options)
+            //.get('api/doctors', this.options)
             .pipe(catchError(this.handleError('getDoctors')))
     }
 
     getDoctor(id: number): Observable<any> {
-        const url = this.link + 'api/doctors/' + id;
+        const url = 'api/doctors/' + id;
         return this.http
-            .get(url, this.options)
+            .get(this.link + url, this.options)
+            //.get(url, this.options)
             .pipe(catchError(this.handleError('getDoctor', id)))
     }
 
     addDoctor(doctor: Doctor): Observable<any> {
         return this.http
             .post(this.link + 'api/doctors', doctor, this.options)
+            //.post('api/doctors', doctor, this.options)
             .pipe(catchError(this.handleError('addDoctor', doctor)));
     }
 
     deleteDoctor(id: number): Observable<any> {
-        const url = this.link + 'api/doctors/' + id;
+        const url = 'api/doctors/' + id;
         return this.http
-            .delete(url, this.options)
+            .delete(this.link + url, this.options)
+            //.delete(url, this.options)
             .pipe(catchError(this.handleError('deleteDoctor', id)))
     }
 
     updateDoctor(doctor: Doctor): Observable<any> {
-        const url = this.link + 'api/doctors/' + doctor.id;
+        const url = 'api/doctors/' + doctor.id;
         return this.http
-            .put(url, doctor, this.options)
+            .put(this.link + url, doctor, this.options)
+            //.put(url, doctor, this.options)
             .pipe(catchError(this.handleError('updateDoctor', doctor)))
     }
 
@@ -79,6 +84,7 @@ export class DoctorsService {
         }
         return this.http
             .post(this.link + 'api/upload_to_dropbox', formData, this.options)
+            //.post('api/upload_to_dropbox', formData, this.options)
             .pipe(catchError(this.handleError('addImages', formData)));
     }
 
@@ -98,13 +104,15 @@ export class DoctorsService {
         };
 
         return this.http
-        .post(this.link + 'api/search', <JSON>data, this.options)
+        .post(this.link + 'api/searchby', <JSON>data, this.options)
+        //.post('api/search', <JSON>data, this.options)
         .pipe(catchError(this.handleError('getResult', text)));
     }
 
     getDT(): Observable<any>{
         return this.http
         .get(this.link + 'api/dropbox', this.options)
+        //.get('api/dropbox', this.options)
         .pipe(catchError(this.handleError('getDropboxToken')));
     }
 }

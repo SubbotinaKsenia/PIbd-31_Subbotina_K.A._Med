@@ -61,7 +61,7 @@ export class DoctorsComponent implements OnInit {
       console.log(this.doctors);
     });
 
-    var socket = new WebSocket("wss://ipmedwebsocket.herokuapp.com/");
+    var socket = new WebSocket("wss://ipmedwebsocket.herokuapp.com");
 
     let doctor = this.observable_doctor;
     let id = this.observable_id;
@@ -71,10 +71,10 @@ export class DoctorsComponent implements OnInit {
 
     function process(data){
       if (Number(data)){
-        id.next(Number(data));
+          id.next(Number(data));
       }
       else {
-        doctor.next(JSON.parse(data));
+          doctor.next(JSON.parse(data));
       }
     };
   }

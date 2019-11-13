@@ -26,30 +26,35 @@ export class UserService {
     register(user: User): Observable<any> {
         return this.http
             .post(this.link + 'api/register', user)
+            //.post('api/register', user)
             .pipe(catchError(this.handleError('register', user)))
     }
 
     login(user: User): Observable<any> {
         return this.http
             .post(this.link + 'api/login', user)
+            //.post('api/login', user)
             .pipe(catchError(this.handleError('login', user)))
     }
 
     logout(): Observable<any> {
         return this.http
             .post(this.link + 'api/logout', this.options)
+            //.post('api/logout', this.options)
             .pipe(catchError(this.handleError('logout')))
     }
 
     loginFB(): Observable<any> {
         return this.http
             .get(this.link + 'api/login/facebook')
+            //.get('api/login/facebook')
             .pipe(catchError(this.handleError('loginFB')))
     }
 
     getAuth(): Observable<any> {
         return this.http
             .get(this.link + 'api/login/facebook/getAuth')
+            //.get('api/login/facebook/getAuth')
             .pipe(catchError(this.handleError('getAuth')))
     }
 }
