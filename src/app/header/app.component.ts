@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service'
 import { UserService } from '../user.service';
-import { Router } from '@angular/router';
 import { authService } from '../authService';
+import { DoctorsService } from '../admin/doctors.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -12,12 +13,17 @@ import { authService } from '../authService';
 export class AppComponent {
   title = 'Med';
 
-  constructor(private userService: UserService, private cookieService: CookieService, private router: Router, private authService: authService) { 
+  constructor(private userService: UserService, private cookieService: CookieService, private router: Router, private authService: authService, private doctorsService: DoctorsService) { 
     this.authService.getUserName().subscribe(result =>{
       this.user_name = result.text;
     });
     this.authService.getToken().subscribe(result =>{
       this.token = result.text;
+    });
+    this.doctorsService.getDT().subscribe(result =>{
+      if (result.token){
+        this.cookieService.set('dropbox_token', result.token);
+      }
     });
   }
 

@@ -23,20 +23,20 @@ export class DoctorsService {
 
     dropbox = {
         headers: new HttpHeaders({
-        'Authorization': 'Bearer OsCo0aVepGAAAAAAAAAAJ-l_qxF-pbgq3LH2r01zqOTNraJyMj7GcdvjDE9rFQ-g',
+        'Authorization': 'Bearer ' + this.cookieService.get('dropbox_token'),
         'Content-Type': 'application/json'
     })};
 
-      //link: string = 'https://ipmedbackend.herokuapp.com/';
+    link: string = 'https://ipmedbackend.herokuapp.com/';
 
     getDoctors(): Observable<any> {
         return this.http
-            .get('api/doctors', this.options)
+            .get(this.link + 'api/doctors', this.options)
             .pipe(catchError(this.handleError('getDoctors')))
     }
 
     getDoctor(id: number): Observable<any> {
-        const url = 'api/doctors/' + id;
+        const url = this.link + 'api/doctors/' + id;
         return this.http
             .get(url, this.options)
             .pipe(catchError(this.handleError('getDoctor', id)))
@@ -44,19 +44,19 @@ export class DoctorsService {
 
     addDoctor(doctor: Doctor): Observable<any> {
         return this.http
-            .post('api/doctors', doctor, this.options)
+            .post(this.link + 'api/doctors', doctor, this.options)
             .pipe(catchError(this.handleError('addDoctor', doctor)));
     }
 
     deleteDoctor(id: number): Observable<any> {
-        const url = 'api/doctors/' + id;
+        const url = this.link + 'api/doctors/' + id;
         return this.http
             .delete(url, this.options)
             .pipe(catchError(this.handleError('deleteDoctor', id)))
     }
 
     updateDoctor(doctor: Doctor): Observable<any> {
-        const url = 'api/doctors/' + doctor.id;
+        const url = this.link + 'api/doctors/' + doctor.id;
         return this.http
             .put(url, doctor, this.options)
             .pipe(catchError(this.handleError('updateDoctor', doctor)))
@@ -78,7 +78,7 @@ export class DoctorsService {
             formData.append('images_files_'+i, doctor.images_files[i]);
         }
         return this.http
-            .post('api/upload_to_dropbox', formData, this.options)
+            .post(this.link + 'api/upload_to_dropbox', formData, this.options)
             .pipe(catchError(this.handleError('addImages', formData)));
     }
 
@@ -98,7 +98,13 @@ export class DoctorsService {
         };
 
         return this.http
-        .post('api/search', <JSON>data, this.options)
+        .post(this.link + 'api/search', <JSON>data, this.options)
         .pipe(catchError(this.handleError('getResult', text)));
+    }
+
+    getDT(): Observable<any>{
+        return this.http
+        .get(this.link + 'api/dropbox', this.options)
+        .pipe(catchError(this.handleError('getDropboxToken')));
     }
 }

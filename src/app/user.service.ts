@@ -21,33 +21,35 @@ export class UserService {
         headers: new HttpHeaders().set('Authorization', 'Bearer ' + this.cookieService.get('token'))
       };
 
+    link: string = 'https://ipmedbackend.herokuapp.com/';
+
     register(user: User): Observable<any> {
         return this.http
-            .post('api/register', user)
+            .post(this.link + 'api/register', user)
             .pipe(catchError(this.handleError('register', user)))
     }
 
     login(user: User): Observable<any> {
         return this.http
-            .post('api/login', user)
+            .post(this.link + 'api/login', user)
             .pipe(catchError(this.handleError('login', user)))
     }
 
     logout(): Observable<any> {
         return this.http
-            .post('api/logout', this.options)
+            .post(this.link + 'api/logout', this.options)
             .pipe(catchError(this.handleError('logout')))
     }
 
     loginFB(): Observable<any> {
         return this.http
-            .get('api/login/facebook')
+            .get(this.link + 'api/login/facebook')
             .pipe(catchError(this.handleError('loginFB')))
     }
 
     getAuth(): Observable<any> {
         return this.http
-            .get('api/login/facebook/getAuth')
+            .get(this.link + 'api/login/facebook/getAuth')
             .pipe(catchError(this.handleError('getAuth')))
     }
 }
