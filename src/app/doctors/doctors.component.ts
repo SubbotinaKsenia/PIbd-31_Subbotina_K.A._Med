@@ -65,6 +65,7 @@ export class DoctorsComponent implements OnInit {
 
     let doctor = this.observable_doctor;
     let id = this.observable_id;
+    
     socket.onmessage = function(event) {     
       process(event.data);
     };

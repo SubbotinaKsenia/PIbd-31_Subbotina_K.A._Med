@@ -13,9 +13,9 @@ import { isAuthorized } from './isAuthorized';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
-  { path: 'admin', component: AdminComponent, canActivate: [isAuthorized] },
-  { path: 'admin/add', component: AddComponent, canActivate: [isAuthorized] },
-  { path: 'admin/edit/:id', component: AddComponent , data:{mode:"edit"}, canActivate: [isAuthorized]},
+  { path: 'admin', component: AdminComponent },
+  { path: 'admin/add', component: AddComponent },
+  { path: 'admin/edit/:id', component: AddComponent , data:{mode:"edit"} },
   { path: 'doctors', component: DoctorsComponent },  
   { path: 'login', component: LoginComponent }, 
   { path: 'register', component: RegistrationComponent }, 
