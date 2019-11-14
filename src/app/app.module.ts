@@ -23,6 +23,7 @@ import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { CookieService } from 'ngx-cookie-service'
 import { isAuthorized } from './isAuthorized';
 import { authService } from './authService';
+import { WebhookComponent } from './webhook/webhook.component';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { authService } from './authService';
     DoctorsComponent,
     LoginComponent,
     RegistrationComponent,
-    RecordComponent
+    RecordComponent,
+    WebhookComponent
   ],
   imports: [
     BrowserModule,

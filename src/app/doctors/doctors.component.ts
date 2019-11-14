@@ -16,8 +16,6 @@ export class DoctorsComponent implements OnInit {
 
   public Editor = ClassicEditor;
 
-  flag = false;
-
   constructor(private doctorsService: DoctorsService) {
     this.observable.pipe(debounceTime(1000))
     .subscribe(val =>{

@@ -9,6 +9,7 @@ import { DoctorsComponent } from './doctors/doctors.component'
 import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { isAuthorized } from './isAuthorized';
+import { WebhookComponent } from './webhook/webhook.component';
 
 
 const appRoutes: Routes = [
@@ -20,6 +21,7 @@ const appRoutes: Routes = [
   { path: 'login', component: LoginComponent }, 
   { path: 'register', component: RegistrationComponent }, 
   { path: 'record', component: RecordComponent },
+  { path: 'webhook', component: WebhookComponent },
   //{ path: 'record', loadChildren: './record/record.module#RecordModule' },
   { path: '',   redirectTo: '/home', pathMatch: 'full' },
   { path: '**',   redirectTo: '/home', pathMatch: 'full' },
